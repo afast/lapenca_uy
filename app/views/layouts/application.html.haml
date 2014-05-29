@@ -6,29 +6,10 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %nav.top-bar{'data-topbar' => ''}
-      %ul.title-area
-        %li.name
-          %h1
-            = link_to 'La Penca UY', home_path
-        %li.toggle-topbar.menu-icon
-          %a{href: "#"}
-            %span Menu
-      %section.top-bar-section
-        %ul.right
-          %li.active
-            %a{href: "#"} Right Button Active
-          %li.has-dropdown
-            %a{href: "#"} Admin
-            %ul.dropdown
-              %li
-                = link_to 'Estadios', arenas_path
-        %ul.left
-          %li
-            = link_to 'Pronosticar', forecast_forecasts_path
+    - if current_member
+      = render 'layouts/header'
     - if notice
-      %p.alert.alert-success= notice
+      .alert-box.success= notice
     - if alert
-      %p.alert.alert-danger= alert
-    .row
-      = yield
+      .alert-box.alert= alert
+    = yield

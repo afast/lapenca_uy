@@ -1,0 +1,31 @@
+.forecasts-container
+  .groups
+    - @matches.each do |group, matches|
+      .group-panel
+        .title
+          Grupo #{group}
+        .matches
+          .content{id: "panel#{group}"}
+            .row
+              .small-7.columns
+                = render partial: 'match', collection: matches, as: :match
+              .small-5.columns
+                - teams = Team.where(group: group)
+                .positions
+                  %table{data: {teams: teams.map { |t| t.name.downcase }}}
+                    %tr.header
+                      %th.team Equipo
+                      %th pts
+                      %th dif
+                    - teams.each do |team|
+                      %tr
+                        %td.team= team.name
+                        %td.pts
+                        %td.dif
+
+    - if current_member and current_member.is_admin
+      %br
+      = link_to 'Ir a Actualizar Resultados', results_path, class: ['button', 'save-forecast-btn']
+
+:javascript
+  fixture()

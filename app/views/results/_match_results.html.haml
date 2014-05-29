@@ -1,0 +1,14 @@
+%li
+  .row.match
+    .small-4.columns.team.left-team
+      = match_result.team1.try :name
+    .small-2.columns.team-score
+      = text_field_tag "result[#{match_result.id}][team1_score]",
+      match_result.try(:team1_score),
+      class: match_result.team1.try(:name).try(:downcase)
+    .small-2.columns.team-score
+      = text_field_tag "result[#{match_result.id}][team2_score]",
+      match_result.try(:team2_score),
+      class: match_result.team2.try(:name).try(:downcase)
+    .small-4.columns.team.right-team
+      = match_result.team2.try :name

@@ -11,5 +11,13 @@
  *= require_self
  *= require normalize
  *= require foundation.min
+ *
+ *= require devise/login
+ *= require layouts
+ *
  *= require_tree .
  */
+
+.alert-box {
+    margin: 0 !important;
+}

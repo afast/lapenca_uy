@@ -1,3 +1,165 @@
-// Place all the styles related to the Forecasts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.forecasts-container {
+  form {
+    margin: 0;
+  }
+
+  input[type="text"] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border: none;
+
+    padding: 0;
+
+    width: 22px;
+    height: 28px;
+    text-align: center;
+    font-weight: bold;
+
+    font-size: 16px;
+
+    line-height: 30px;
+    vertical-align: middle;
+  }
+
+  .columns {
+    padding: 0 8px;
+  }
+
+  min-height: 100%;
+
+  background: image-url('grass-background.jpg') repeat;
+  background-attachment: fixed;
+
+  text-align: center;
+
+  .group-panel {
+    width: 480px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 20px 15px;
+    display: inline-block;
+    color: #FFFFFF;
+    padding: 10px;
+
+    .title {
+      border-bottom: 1px solid #FFFFFF;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .matches {
+      margin: 0;
+
+      li {
+        list-style-type: none;
+      }
+
+      .match {
+        margin: 0;
+        width: 240px;
+        display: block;
+        height: 30px;
+        margin-top: 8px;
+
+        .team {
+          color: #FFFFFF;
+          font-size: 15px;
+          overflow: hidden;
+          height: 30px;
+
+          white-space: nowrap;
+
+          line-height: 30px;
+          vertical-align: middle;
+
+          &.left-team {
+            text-align: left;
+          }
+
+          &.right-team {
+            text-align: right;
+          }
+        }
+
+        .team-score {
+          font-size: 16px;
+
+          padding: 0;
+          margin: 0 6px;
+          width: 24px;
+          height: 30px;
+          text-align: center;
+          font-weight: bold;
+
+          line-height: 30px;
+          vertical-align: middle;
+
+          background-color: transparent;
+          color: #FFFFFF;
+
+          border: 1px solid #FFFFFF;
+
+          &.winner {
+            outline: 2px solid #FFFFFF;
+          }
+        }
+      }
+    }
+
+    .positions {
+      margin-top: 22.5px;
+      height: 175px;
+
+      table {
+        background-color: transparent;
+        border: 1px solid #FFFFFF;
+        table-layout: fixed;
+        width: 160px;
+
+        tr {
+          width: 160px;
+          height: 30px;
+          white-space: nowrap;
+
+          color: #FFFFFF;
+
+          background-color: transparent !important;
+
+          th {
+            width: 40px;
+            color: #FFFFFF;
+            border-bottom: 1px solid #FFFFFF;
+
+            &.team {
+              width: 80px;
+              border-right: 1px solid #FFFFFF;
+            }
+          }
+
+          td {
+            width:40px;
+            color: #FFFFFF;
+            overflow: hidden;
+            font-size: 12px;
+
+            &.team {
+              width: 80px;
+              font-size: 10px;
+              text-align: left;
+              border-right: 1px solid #FFFFFF;
+
+              strong {
+                font-size: 12px;
+                color: greenyellow;
+                font-weight: normal;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .save-forecast-btn {
+    width: 400px;
+  }
+}

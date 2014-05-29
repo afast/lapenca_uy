@@ -1,0 +1,23 @@
+%nav.top-bar{'data-topbar' => ''}
+  %ul.title-area
+    %li.name
+      %h1
+        = link_to 'La Penca UY', root_path
+  %section.top-bar-section
+    %ul.right
+      %li
+        = link_to 'Posiciones', root_path
+      %li
+        = link_to 'Pronostico', forecasts_path
+      %li
+        = link_to 'Resultados', matches_path
+      %li
+        = link_to 'Paises', teams_path
+      %li
+        = link_to 'Estadios', arenas_path
+      %li.has-dropdown.active
+        %a{href: "#"}
+          = current_member.email
+        %ul.dropdown
+          %li
+            = link_to 'Salir', destroy_member_session_path, {method: 'delete'}

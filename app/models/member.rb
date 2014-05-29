@@ -5,4 +5,6 @@ class Member < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :forecasts
+  has_many :member_subscriptions
+  has_many :member_groups, through: :member_subscriptions
 end

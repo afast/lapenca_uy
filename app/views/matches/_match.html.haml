@@ -1,0 +1,8 @@
+%li
+  .row.match
+    .small-4.columns.team.left-team
+      = match.team1.name
+    = content_tag :div, match.try(:team1_score), class: ['small2', 'columns', 'team-score', match.team1.name.downcase]
+    = content_tag :div, match.try(:team2_score), class: ['small2', 'columns', 'team-score', match.team2.name.downcase]
+    .small-4.columns.team.right-team
+      = match.team2.name

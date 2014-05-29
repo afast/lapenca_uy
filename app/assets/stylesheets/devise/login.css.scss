@@ -1,0 +1,93 @@
+.container {
+  width: 100%;
+  height: 100%;
+
+  background: image-url('login-background.jpg') no-repeat center center fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  .login {
+    width: 320px;
+    height: 215px;
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -160px;
+    margin-top: -107.5px;
+
+    .login-tabs {
+      text-align: center;
+
+      a {
+        .half {
+          width: 50%;
+          float: left;
+        }
+
+        .active {
+          border-bottom: 2px solid dodgerblue;
+        }
+      }
+    }
+
+    .login-form {
+      margin-top: 50px;
+
+      .login-input-line {
+        position: relative;
+        margin-top: 30px;
+        height: 30px;
+
+        .login-label {
+          position: absolute;
+          left: 0;
+          margin-left: 20px;
+
+          height: 30px;
+          font-size: 12px;
+          line-height: 30px;
+          color: #FFFFFF;
+          vertical-align: middle;
+        }
+
+        .login-field {
+          position: absolute;
+          right: 0;
+          margin-right: 20px;
+          width: 200px;
+
+          height: 30px;
+          padding: 0 10px;
+          background-color: transparent;
+          color: #FFFFFF;
+          border: none;
+          border-bottom: 2px solid #FFFFFF;
+
+          &:focus {
+            box-shadow: none;
+          }
+        }
+      }
+
+      .button {
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+
+        height: 16px;
+        line-height: 0;
+
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.signup-btn {
+  float: right;
+}

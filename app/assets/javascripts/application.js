@@ -25,7 +25,7 @@ String.prototype.titleize = function() {
 function ready(){
   $(document).foundation();
 
-  $('li .row.forecast_inputs').on('change keyup', 'input', function(ev){
+  $('li .row.match').on('change keyup', 'input', function(ev){
     forecast();
   });
   $('dd').on('click', 'a', function(ev){

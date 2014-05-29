@@ -1,0 +1,22 @@
+.container
+  .login
+    %dl.login-tabs
+      %a{:href => '/members/sign_in'}
+        %dd.half.active
+          Entrar
+      %a{:href => '#', 'data-reveal-id' => 'signupModal', 'data-reveal' => true}
+        %dd.half
+          Registrarse
+    .login-form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .login-input-line
+          = f.label :email, class: 'login-label'
+          = f.email_field :email, autofocus:true, class: 'login-field'
+        .login-input-line
+          = f.label :password, class: 'login-label'
+          = f.password_field :password, autocomplete: 'off', class: 'login-field'
+
+        = f.submit 'OK', class: 'button'
+
+    #signupModal.reveal-modal.tiny{'data-reveal' => true}
+      = render 'devise/registrations/new'

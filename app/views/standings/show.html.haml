@@ -1,0 +1,15 @@
+.standings
+  - if @standings != {}
+    - @standings.each_pair do |group, participants|
+      = group
+      %table
+        %tr.header
+          %th Email
+          %th Puntos
+        - participants.each do |user|
+          %tr
+            %td= user.email
+            %td= user.points
+
+  - else
+    Suscribase a un grupo
