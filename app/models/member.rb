@@ -78,7 +78,7 @@ class Member < ActiveRecord::Base
   end
 
   def qualified
-    Match.where(stage: 16, pos_in_stage: pos_in_stage).map { |m| [m.team1_id, m.team2_id] }.flatten
+    Match.where(stage: 16).map { |m| [m.team1_id, m.team2_id] }.flatten
   end
 
   def predicted_ids
