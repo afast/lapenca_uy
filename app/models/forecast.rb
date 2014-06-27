@@ -58,9 +58,9 @@ class Forecast < ActiveRecord::Base
   end
 
   def team1_data
-    points = if team1_score > team2_score
+    points = if team1_score && team2_score && team1_score > team2_score
       3
-    elsif team1_score == team2_score
+    elsif team1_score && team2_score && team1_score == team2_score
       1
     else
       0
@@ -69,9 +69,9 @@ class Forecast < ActiveRecord::Base
   end
 
   def team2_data
-    points = if team2_score > team1_score
+    points = if team1_score && team2_score && team2_score > team1_score
       3
-    elsif team1_score == team2_score
+    elsif team1_score && team2_score && team1_score == team2_score
       1
     else
       0
