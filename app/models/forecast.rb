@@ -65,7 +65,7 @@ class Forecast < ActiveRecord::Base
     else
       0
     end
-    {gf: team1_score, ga: team2_score, points: points}
+    {gf: team1_score || 0, ga: team2_score || 0, points: points || 0}
   end
 
   def team2_data
@@ -76,7 +76,7 @@ class Forecast < ActiveRecord::Base
     else
       0
     end
-    {gf: team2_score, ga: team1_score, points: points}
+    {gf: team2_score || 0, ga: team1_score || 0, points: points || 0}
   end
 
   def result_sym
