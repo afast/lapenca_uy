@@ -91,7 +91,7 @@ class Member < ActiveRecord::Base
     ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].each do |group|
       @predicted[group] = {}
       forecasts.includes(:match).where('matches.group' => group).each do |f|
-        if @predicted[group][f.match.team1_id]
+        unless @predicted[group][f.match.team1_id]
           @predicted[group][f.match.team1_id] = f.team1_data
         else
           f.team1_data.each do |k,v|
@@ -99,7 +99,7 @@ class Member < ActiveRecord::Base
           end
         end
 
-        if @predicted[group][f.match.team2_id]
+        unless @predicted[group][f.match.team2_id]
           @predicted[group][f.match.team2_id] = f.team2_data
         else
           f.team2_data.each do |k,v|
