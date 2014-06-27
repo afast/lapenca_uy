@@ -57,7 +57,7 @@ class Member < ActiveRecord::Base
   end
 
   def points_for_predicting_second_stage
-    points = (16 - (qualified - predicted).size) * 20
+    points = (16 - (qualified - predicted_ids).size) * 20
     SECOND_STAGE_FIRSTS.each do |key, value|
       points += 10 if predicted_position?(:first, value)
     end
@@ -71,10 +71,18 @@ class Member < ActiveRecord::Base
     match = Match.where(stage: 16, pos_in_stage: pos_in_stage).first
     case side
     when :first
-      match.team1_id == @predicted[match.group][0]
+      match.team1_id == predicted[match.group][0]
     when :second
-      match.team2_id == @predicted[match.group][1]
+      match.team2_id == predicted[match.group][1]
     end
+  end
+
+  def qualified
+    Match.where(stage: 16, pos_in_stage: pos_in_stage).map { |m| [m.team1_id, m.team2_id] }.flatten
+  end
+
+  def predicted_ids
+    predicted.map { |k,v| v[0..1] }.flatten
   end
 
   def predicted
@@ -99,34 +107,36 @@ class Member < ActiveRecord::Base
           end
         end
       end
-    end
-    @predicted[group] = @predicted[group].sort do |a,b|
-      if a[1][:points] > b[1][:points]
-        -1
-      elsif a[1][:points] < b[1][:points]
-        1
-      else
-        if (a[1][:gf] - a[1][:ga]) > (b[1][:gf] - b[1][:ga])
+
+      @predicted[group] = @predicted[group].sort do |a,b|
+        if a[1][:points] > b[1][:points]
           -1
-        elsif (a[1][:gf] - a[1][:ga]) < (b[1][:gf] - b[1][:ga])
+        elsif a[1][:points] < b[1][:points]
           1
         else
-          if a[1][:gf] > b[1][:gf]
+          if (a[1][:gf] - a[1][:ga]) > (b[1][:gf] - b[1][:ga])
             -1
-          elsif a[1][:gf] < b[1][:gf]
+          elsif (a[1][:gf] - a[1][:ga]) < (b[1][:gf] - b[1][:ga])
             1
           else
-            if a[1][:ga] < b[1][:ga]
+            if a[1][:gf] > b[1][:gf]
               -1
-            elsif a[1][:ga] > b[1][:ga]
+            elsif a[1][:gf] < b[1][:gf]
               1
             else
-              0
+              if a[1][:ga] < b[1][:ga]
+                -1
+              elsif a[1][:ga] > b[1][:ga]
+                1
+              else
+                0
+              end
             end
           end
         end
-      end
-    end.map { |e| e[0] }
+      end.map { |e| e[0] }
+    end
+    @predicted
   end
 
   def full_name
