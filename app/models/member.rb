@@ -50,7 +50,7 @@ class Member < ActiveRecord::Base
   def recalculate_points
     log = Logger.new("#{Rails.root}/log/member_points.log")
     log.info("Recalculating points for #{name} - #{email}")
-    points = forecasts.includes(:match).map { |f| f.calculate_points }.inject(:+)
+    points = forecasts.includes(:match).map { |f| f.calculate_points }.inject(:+) || 0
     points += points_for_predicting_second_stage
     update_attributes({points: points, points_to_add: 0})
     log.info("Done #{name || email} has #{points || 0} points.")
