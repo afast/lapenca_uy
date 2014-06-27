@@ -71,9 +71,9 @@ class Member < ActiveRecord::Base
     match = Match.where(stage: 16, pos_in_stage: pos_in_stage).first
     case side
     when :first
-      match.team1_id == predicted[match.group][0]
+      match.team1_id == predicted[match.team1.group][0]
     when :second
-      match.team2_id == predicted[match.group][1]
+      match.team2_id == predicted[match.team2.group][1]
     end
   end
 
