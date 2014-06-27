@@ -11,7 +11,7 @@ class Forecast < ActiveRecord::Base
   end
 
   def calculate_points
-    if team1_score.present? and team2_score.present?
+    if team1_score.present? && team2_score.present?
       @@points_logger ||= Logger.new("#{Rails.root}/log/member_points.log")
       points = 0
       reasons = []
@@ -32,7 +32,7 @@ class Forecast < ActiveRecord::Base
           points += 10
           reasons << :exact_result
         end
-        if !correct_match? and winner_id.present? and winner_id == match.winner_id
+        if !correct_match? && winner_id.present? && winner_id == match.winner_id
           points += 20
           reasons << :advancing_team
         end
@@ -50,11 +50,33 @@ class Forecast < ActiveRecord::Base
   end
 
   def correct_match?
-    match.stage == 32 or match.stage == 16 or (team1_id == match.team1_id && team2_id == match.team2_id)
+    match.stage == 32 || match.stage == 16 || (team1_id == match.team1_id && team2_id == match.team2_id)
   end
 
   def description
     "#{team1_score} - #{team2_score}"
+  end
+
+  def team1_data
+    points = if team1_score > team2_score
+      3
+    elsif team1_score == team2_score
+      1
+    else
+      0
+    end
+    {gf: team1_score, ga: team2_score, points: points}
+  end
+
+  def team2_data
+    points = if team2_score > team1_score
+      3
+    elsif team1_score == team2_score
+      1
+    else
+      0
+    end
+    {gf: team2_score, ga: team1_score, points: points}
   end
 
   def result_sym
